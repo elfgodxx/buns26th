@@ -95,3 +95,24 @@ p { font-size: 1.2em; line-height: 1.6; text-align: left; color: #5d5d5d; }
         font-size: 2.5em;
     }
 }
+
+// In script.js, inside the DOMContentLoaded event listener
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... all your existing code at the top ...
+    const exitButton = document.getElementById('exitButton');
+    const finalMessageContainer = document.getElementById('final-message-container');
+
+    // ... your existing birthdayButton.addEventListener ...
+
+    // ADD THIS NEW EVENT LISTENER
+    exitButton.addEventListener('click', () => {
+        longMessageContainer.classList.add('hidden');
+
+        // Optional: Fade out music (more complex) - for now, we'll just let it play.
+
+        setTimeout(() => {
+            finalMessageContainer.classList.remove('hidden');
+        }, 1000);
+    });
+});
