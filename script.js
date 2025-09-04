@@ -38,3 +38,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500); // 1.5-second delay
     });
 });
+
+// --- "Sparkles on Tap" functionality ---
+
+document.addEventListener('click', function(e) {
+    // Create a new div element
+    let sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+
+    // Position the sparkle where the user clicked/tapped
+    // We add a small random offset to make it look more natural
+    const offsetX = (Math.random() - 0.5) * 20;
+    const offsetY = (Math.random() - 0.5) * 20;
+    sparkle.style.left = (e.clientX + offsetX) + 'px';
+    sparkle.style.top = (e.clientY + offsetY) + 'px';
+    
+    // Add the sparkle to the page
+    document.body.appendChild(sparkle);
+
+    // Remove the sparkle element after the animation is finished
+    setTimeout(() => {
+        sparkle.remove();
+    }, 700); // 700 milliseconds (matches the animation duration)
+});
