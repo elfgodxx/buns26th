@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function startFallingStars() {
         if (window.innerWidth > 768) { return; }
-        setInterval(() => {
+        const starInterval = setInterval(() => {
             const star = document.createElement('div');
             star.classList.add('falling-star');
             star.style.left = Math.random() * 100 + '%';
