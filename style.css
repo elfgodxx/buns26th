@@ -1,49 +1,79 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Georgia', serif; /* A more romantic font */
+    color: white;
+}
+
 body {
-    background-color: #f8cdda; /* A cute pink background */
-    font-family: 'Arial', sans-serif;
+    background: url('[URL_TO_YOUR_BEACH_GIF]') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    overflow: hidden; /* Hide scrollbars */
 }
 
 .container {
-    padding-top: 100px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+    max-width: 600px;
+    transition: opacity 1.5s ease-in-out; /* Smooth fade transition */
+}
+
+/* Class to handle fading and hiding */
+.hidden {
+    opacity: 0;
+    pointer-events: none; /* Can't click on it when hidden */
+    position: absolute; /* Take it out of the layout flow when hidden */
 }
 
 h1 {
-    color: #d14f8a;
     font-size: 3em;
+    text-shadow: 2px 2px 8px #000;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2em;
+    color: #f8cdda; /* Pinkish color for the header */
+    text-shadow: 2px 2px 8px #000;
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    text-align: left; /* Justify long message for readability */
 }
 
 #birthdayButton {
     background-color: #d14f8a;
     color: white;
     padding: 15px 30px;
-    border: none;
+    border: 2px solid #fff;
     border-radius: 25px;
     font-size: 1.2em;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 20px;
 }
 
 #birthdayButton:hover {
     background-color: #b94276;
-}
-
-#birthdayMessage {
-    margin-top: 30px;
-    font-size: 1.5em;
-    color: #555;
-}
-
-.hidden {
-    display: none;
+    transform: scale(1.05);
 }
 
 #fireworksCanvas {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 10;
+    pointer-events: none;
 }
