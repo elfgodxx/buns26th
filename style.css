@@ -86,3 +86,26 @@ p { font-size: 1.2em; line-height: 1.6; text-align: left; color: #5d5d5d; }
     p { font-size: 1.0em; line-height: 1.7; }
     #birthdayButton { font-size: 1em; padding: 12px 24px; }
 }
+
+.sparkle {
+    position: fixed; /* Stays in place on the screen */
+    width: 8px;
+    height: 8px;
+    background-color: #D8A7B1; /* Dusty Rose color from your fireworks */
+    border-radius: 50%;
+    pointer-events: none; /* The sparkle can't be clicked */
+    z-index: 9999;
+    animation: fade-and-shrink 0.7s forwards;
+    box-shadow: 0 0 10px #D8A7B1, 0 0 20px #D8A7B1;
+}
+
+@keyframes fade-and-shrink {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
