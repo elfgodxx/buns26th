@@ -7,13 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Initial container with the button -->
+
     <div id="initial-container" class="container">
         <h1>Happy Birthday, Sophia!</h1>
         <button id="birthdayButton">You might wanna click me :)</button>
     </div>
 
-    <!-- Container for the long message (initially hidden) -->
     <div id="long-message-container" class="container hidden">
         <h2>A little something for you...</h2>
         <p><strong><em>“Maybe it’s the fact that every time I fall, I lose it all.”</em></strong></p>
@@ -21,17 +20,20 @@
         <p>Happy birthday, Buns. You’re my favorite person, and having you in it has made my world infinitely brighter and more meaningful.</p>
         <p>I never saw us coming, but now I can't imagine a world where we didn't happen. Thank you for giving me the incredible honor of being your girlfriend. I know I can get lost in my own head, lamenting over mistakes and annoy you when I sulk, but you're always there. Thank you for the nudges and for giving me chances even when my flaws feel so obvious.</p>
         <p>I love you, Buns. I am completely and truly diving into you, into us. I wish you all the happiness in the world today and every day after.</p>
-        <p>Even though I can't steal you for the whole day, I will cherish the first few hours of your birthday with you before the world needs us back. mwa</p>
-        <br><br>
-        Love,
-        <br>
-        Jia
-
+        <p>
+            Even though I can't steal you for the whole day, I will cherish the first few hours of your birthday with you before the world needs us back. mwa
+            <br><br>
+            Love,
+            <br>
+            Jia
+        </p>
+        <!-- The button that triggers the final message -->
         <button id="exitButton" class="exit-button">One last thing...</button>
-        <!-- ADD THIS NEW CONTAINER AT THE END -->
-        <div id="final-message-container" class="container hidden">
-         <h1 class="final-text">I love you.</h1>
-        </div>
+    </div>
+
+    <!-- The final message that fades in at the end -->
+    <div id="final-message-container" class="container hidden">
+        <h1 class="final-text">I love you.</h1>
     </div>
 
     <canvas id="fireworksCanvas"></canvas>
@@ -39,5 +41,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.10.2/dist/index.umd.js"></script>
     <script src="script.js"></script>
+
 </body>
 </html>
