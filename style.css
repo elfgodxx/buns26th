@@ -1,9 +1,8 @@
-/* --- Final Polished Version --- */
+/* --- Final Polished & Mobile-Responsive Version --- */
 
-/* Defines the slow pan animation */
 @keyframes slow-pan {
-  0% { background-position: center center; transform: scale(1); }
-  100% { background-position: center center; transform: scale(1.05); }
+  0% { transform: scale(1.02); }
+  100% { transform: scale(1.07); }
 }
 
 body, html {
@@ -16,18 +15,13 @@ body, html {
 }
 
 body {
-    /* We use a STATIC image for the animation effect. I've found one that matches your GIF. */
-    background-image: url('https://raw.githubusercontent.com/elfgodxx/buns26th/main/8edaca7b338251350fc297330440b8e9%20(1).gif'); /* Using your GIF as the background image */
-    
+    background-image: url('https://raw.githubusercontent.com/elfgodxx/buns26th/main/8edaca7b338251350fc297330440b8e9%20(1).gif');
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     background-color: #2b2b2b;
-
-    /* Apply the slow-pan animation */
     animation: slow-pan 40s infinite alternate ease-in-out;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,14 +29,13 @@ body {
 }
 
 .container {
-    /* --- The new soft white background --- */
-    background-color: rgba(248, 244, 242, 0.85); /* Soft, warm, semi-transparent white */
-    
+    background-color: rgba(248, 244, 242, 0.85);
     padding: 30px 40px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    max-width: 600px;
+    max-width: 650px; /* Increased max-width slightly for desktop */
     transition: opacity 1.5s ease-in-out;
+    box-sizing: border-box; /* Important for mobile layout */
 }
 
 .hidden {
@@ -51,17 +44,16 @@ body {
     position: absolute;
 }
 
-/* --- New dark text colors for readability --- */
 h1 {
     font-size: 3em;
-    color: #4a4a4a; /* Dark gray for main title */
-    text-shadow: none; /* Shadow isn't needed on a light background */
+    color: #4a4a4a;
+    text-shadow: none;
     margin-bottom: 20px;
 }
 
 h2 {
     font-size: 2em;
-    color: #b9728f; /* A darker, dusty rose color */
+    color: #b9728f;
     text-shadow: none;
 }
 
@@ -69,14 +61,14 @@ p {
     font-size: 1.2em;
     line-height: 1.6;
     text-align: left;
-    color: #5d5d5d; /* Slightly softer dark gray for the message */
+    color: #5d5d5d;
 }
 
 #birthdayButton {
     background-color: #d14f8a;
     color: white;
     padding: 15px 30px;
-    border: none; /* Border isn't needed with the new box style */
+    border: none;
     border-radius: 25px;
     font-size: 1.2em;
     cursor: pointer;
@@ -97,4 +89,31 @@ p {
     height: 100%;
     z-index: 10;
     pointer-events: none;
+}
+
+/* --- MOBILE RESPONSIVE STYLES --- */
+/* This code applies only to screens 768px wide or smaller */
+@media (max-width: 768px) {
+    .container {
+        max-width: 90vw; /* Container will be 90% of the screen width */
+        padding: 25px 20px;
+    }
+
+    h1 {
+        font-size: 2.2em; /* Smaller title text */
+    }
+
+    h2 {
+        font-size: 1.6em; /* Smaller subtitle text */
+    }
+
+    p {
+        font-size: 1em; /* Smaller paragraph text for readability */
+        line-height: 1.7; /* A bit more space between lines on mobile */
+    }
+
+    #birthdayButton {
+        font-size: 1em;
+        padding: 12px 24px;
+    }
 }
