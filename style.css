@@ -42,6 +42,7 @@ body {
     max-height: 85vh;
     overflow-y: auto;
     text-align: left;
+    position: relative;
 }
 
 .hidden {
@@ -110,10 +111,31 @@ p { font-size: 1.2em; line-height: 1.6; text-align: left; color: #5d5d5d; }
   }
 }
 
-/* Find this existing section */
-#long-message-container {
-    max-height: 85vh;
-    overflow-y: auto;
-    text-align: left;
-    position: relative; /* ADD THIS LINE */
+/* --- Styles for Falling Stars (Mobile Only) --- */
+
+.falling-star {
+    position: absolute; /* Positioned relative to the message container */
+    top: -20px; /* Start just above the container */
+    width: 5px;
+    height: 5px;
+    background-color: #B58DB6; /* Soft Lilac color */
+    border-radius: 50%;
+    box-shadow: 0 0 8px #B58DB6, 0 0 12px #B58DB6;
+    pointer-events: none;
+    /* Animation: name, duration, timing, delay, iteration, direction, fill-mode */
+    animation: fall-and-fade 10s linear 1s forwards;
+}
+
+@keyframes fall-and-fade {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1; /* Fade in quickly */
+  }
+  100% {
+    transform: translateY(100vh); /* Fall a long distance (ensures it goes past the bottom) */
+    opacity: 0; /* Fade out by the end */
+  }
 }
