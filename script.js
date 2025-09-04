@@ -13,51 +13,55 @@ document.addEventListener('DOMContentLoaded', () => {
         lineWidth: { explosion: { min: 1, max: 3 }, trace: { min: 0.5, max: 1 } }
     });
 
-    // When the first button is clicked
     birthdayButton.addEventListener('click', () => {
         initialContainer.classList.add('hidden');
         fireworks.start();
         backgroundMusic.play().catch(e => console.error("Audio play failed:", e));
-
         setTimeout(() => { longMessageContainer.classList.remove('hidden'); }, 2000);
         setTimeout(() => { fireworks.stop(); }, 20000);
     });
 
-    // When the "See it again?" button is clicked
     replayButton.addEventListener('click', () => {
-        // 1. Fade out the long message
         longMessageContainer.classList.add('hidden');
-        
-        // 2. Stop the music and reset its time to the beginning
         backgroundMusic.pause();
         backgroundMusic.currentTime = 0;
-
-        // 3. After a short delay for the fade-out, show the initial screen again
-        setTimeout(() => {
-            initialContainer.classList.remove('hidden');
-        }, 1500); // 1.5-second delay
+        setTimeout(() => { initialContainer.classList.remove('hidden'); }, 1500);
     });
 });
 
-// --- "Sparkles on Tap" functionality ---
 
-document.addEventListener('click', function(e) {
-    // Create a new div element
-    let sparkle = document.createElement('div');
+// --- NEW, SELF-CONTAINED SPARKLE EFFECT ---
+
+// A helper function to create a sparkle at a specific position
+function createSparkle(x, y) {
+    const sparkle = document.createElement('div');
     sparkle.classList.add('sparkle');
-
-    // Position the sparkle where the user clicked/tapped
-    // We add a small random offset to make it look more natural
+    
     const offsetX = (Math.random() - 0.5) * 20;
     const offsetY = (Math.random() - 0.5) * 20;
-    sparkle.style.left = (e.clientX + offsetX) + 'px';
-    sparkle.style.top = (e.clientY + offsetY) + 'px';
+    sparkle.style.left = (x + offsetX) + 'px';
+    sparkle.style.top = (y + offsetY) + 'px';
     
-    // Add the sparkle to the page
     document.body.appendChild(sparkle);
 
-    // Remove the sparkle element after the animation is finished
     setTimeout(() => {
         sparkle.remove();
-    }, 700); // 700 milliseconds (matches the animation duration)
+    }, 700);
+}
+
+// 1. Create a sparkle on every click (for mobile and PC)
+document.addEventListener('click', function(e) {
+    createSparkle(e.clientX, e.clientY);
+});
+
+// 2. Create a sparkle trail on mouse move (for PC)
+let canCreateSparkle = true;
+document.addEventListener('mousemove', function(e) {
+    if (canCreateSparkle) {
+        createSparkle(e.clientX, e.clientY);
+        canCreateSparkle = false;
+        setTimeout(() => {
+            canCreateSparkle = true;
+        }, 50);
+    }
 });
