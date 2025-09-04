@@ -79,3 +79,19 @@ p { font-size: 1.2em; line-height: 1.6; text-align: left; color: #5d5d5d; }
     p { font-size: 1.0em; line-height: 1.7; }
     #birthdayButton { font-size: 1em; padding: 12px 24px; }
 }
+
+.exit-button {
+    /* (Use the same .exit-button style from Option 1) */
+}
+
+.final-text {
+    font-size: 4em;
+    color: #4a4a4a;
+}
+
+/* On mobile, make the final text smaller */
+@media (max-width: 768px) {
+    .final-text {
+        font-size: 2.5em;
+    }
+}
