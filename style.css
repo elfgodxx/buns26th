@@ -52,6 +52,10 @@ body {
     position: relative;
 }
 
+#initial-container {
+  position: absolute;
+}
+
 .hidden {
     opacity: 0;
     pointer-events: none;
