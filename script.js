@@ -4,8 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const longMessageContainer = document.getElementById('long-message-container');
     const fireworksCanvas = document.getElementById('fireworksCanvas');
     const backgroundMusic = document.getElementById('backgroundMusic');
-    const exitButton = document.getElementById('exitButton');
-    const finalMessageContainer = document.getElementById('final-message-container');
+    const replayButton = document.getElementById('replayButton');
 
     const fireworks = new Fireworks.default(fireworksCanvas, {
         speed: 1, acceleration: 1.01, friction: 0.98, gravity: 1, opacity: 0.6,
@@ -14,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lineWidth: { explosion: { min: 1, max: 3 }, trace: { min: 0.5, max: 1 } }
     });
 
+    // When the first button is clicked
     birthdayButton.addEventListener('click', () => {
         initialContainer.classList.add('hidden');
         fireworks.start();
@@ -23,26 +23,18 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { fireworks.stop(); }, 20000);
     });
 
-    // Event listener for the "One last thing..." button
-    exitButton.addEventListener('click', () => {
-        // 1. Fade out the long message container
+    // When the "See it again?" button is clicked
+    replayButton.addEventListener('click', () => {
+        // 1. Fade out the long message
         longMessageContainer.classList.add('hidden');
+        
+        // 2. Stop the music and reset its time to the beginning
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
 
-        // 2. Gently fade out the music over 2 seconds
-        let musicVolume = backgroundMusic.volume;
-        const fadeOutInterval = setInterval(() => {
-            musicVolume -= 0.05;
-            if (musicVolume < 0) {
-                musicVolume = 0;
-                backgroundMusic.pause();
-                clearInterval(fadeOutInterval);
-            }
-            backgroundMusic.volume = musicVolume;
-        }, 100); // Fades out over 20 * 100ms = 2 seconds
-
-        // 3. After a delay, fade in the final message
+        // 3. After a short delay for the fade-out, show the initial screen again
         setTimeout(() => {
-            finalMessageContainer.classList.remove('hidden');
+            initialContainer.classList.remove('hidden');
         }, 1500); // 1.5-second delay
     });
 });
