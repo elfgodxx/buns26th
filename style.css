@@ -1,4 +1,10 @@
-/* --- Final Version with Replay Button --- */
+/* --- Final Version with Loading Flash Fix --- */
+
+/* This animation fades the entire page in */
+@keyframes fadeInPage {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
 @keyframes slow-pan {
   0% { transform: scale(1.02); }
@@ -15,28 +21,20 @@ body, html {
 }
 
 body {
+    /* Apply the fade-in animation */
+    animation: fadeInPage 1.5s ease-in-out forwards;
+
     background-image: url('https://raw.githubusercontent.com/elfgodxx/buns26th/main/8edaca7b338251350fc297330440b8e9%20(1).gif');
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     background-color: #2b2b2b;
-    animation: slow-pan 40s infinite alternate ease-in-out;
+    animation: slow-pan 40s infinite alternate ease-in-out, fadeInPage 1.5s ease-in-out forwards;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-/* --- FIX for initial loading flash --- */
-/* This will be on the container at the start to keep it invisible */
-.is-loading {
-    opacity: 0;
-}
-
-/* Your existing .container class is below */
-.container {
-    /* ... all the existing styles are fine ... */
 }
 
 .container {
@@ -53,6 +51,7 @@ body {
     max-height: 85vh;
     overflow-y: auto;
     text-align: left;
+    position: relative;
 }
 
 .hidden {
@@ -68,26 +67,8 @@ p { font-size: 1.2em; line-height: 1.6; text-align: left; color: #5d5d5d; }
 #birthdayButton:hover { background-color: #b94276; transform: scale(1.05); }
 #fireworksCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; }
 
-.exit-button {
-    background-color: transparent;
-    color: #b9728f;
-    padding: 10px 20px;
-    border: 1px solid #b9728f;
-    border-radius: 20px;
-    font-size: 0.9em;
-    font-family: 'Georgia', serif;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 30px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.exit-button:hover {
-    background-color: #b9728f;
-    color: white;
-}
+.exit-button { background-color: transparent; color: #b9728f; padding: 10px 20px; border: 1px solid #b9728f; border-radius: 20px; font-size: 0.9em; font-family: 'Georgia', serif; cursor: pointer; transition: all 0.3s ease; margin-top: 30px; display: block; margin-left: auto; margin-right: auto; }
+.exit-button:hover { background-color: #b9728f; color: white; }
 
 @media (max-width: 768px) {
     body { align-items: flex-start; padding-top: 5vh; padding-bottom: 5vh; }
@@ -98,54 +79,8 @@ p { font-size: 1.2em; line-height: 1.6; text-align: left; color: #5d5d5d; }
     #birthdayButton { font-size: 1em; padding: 12px 24px; }
 }
 
-.sparkle {
-    position: fixed; /* Stays in place on the screen */
-    width: 8px;
-    height: 8px;
-    background-color: #D8A7B1; /* Dusty Rose color from your fireworks */
-    border-radius: 50%;
-    pointer-events: none; /* The sparkle can't be clicked */
-    z-index: 9999;
-    animation: fade-and-shrink 0.7s forwards;
-    box-shadow: 0 0 10px #D8A7B1, 0 0 20px #D8A7B1;
-}
+.sparkle { position: fixed; width: 10px; height: 10px; background-color: #D8A7B1; border-radius: 50%; pointer-events: none; z-index: 9999; animation: fade-and-shrink 0.7s forwards; box-shadow: 0 0 10px #D8A7B1, 0 0 20px #D8A7B1; }
+@keyframes fade-and-shrink { from { transform: scale(1); opacity: 1; } to { transform: scale(0); opacity: 0; } }
 
-@keyframes fade-and-shrink {
-  from {
-    transform: scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: scale(0);
-    opacity: 0;
-  }
-}
-
-/* --- Styles for Falling Stars (Mobile Only) --- */
-
-.falling-star {
-    position: absolute; /* Positioned relative to the message container */
-    top: -20px; /* Start just above the container */
-    width: 5px;
-    height: 5px;
-    background-color: #B58DB6; /* Soft Lilac color */
-    border-radius: 50%;
-    box-shadow: 0 0 8px #B58DB6, 0 0 12px #B58DB6;
-    pointer-events: none;
-    /* Animation: name, duration, timing, delay, iteration, direction, fill-mode */
-    animation: fall-and-fade 10s linear 1s forwards;
-}
-
-@keyframes fall-and-fade {
-  0% {
-    transform: translateY(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1; /* Fade in quickly */
-  }
-  100% {
-    transform: translateY(100vh); /* Fall a long distance (ensures it goes past the bottom) */
-    opacity: 0; /* Fade out by the end */
-  }
-}
+.falling-star { position: absolute; top: -20px; width: 5px; height: 5px; background-color: #B58DB6; border-radius: 50%; box-shadow: 0 0 8px #B58DB6, 0 0 12px #B58DB6; pointer-events: none; animation: fall-and-fade 10s linear 1s forwards; }
+@keyframes fall-and-fade { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(100vh); opacity: 0; } }
