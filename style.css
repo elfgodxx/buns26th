@@ -1,0 +1,49 @@
+body {
+    background-color: #f8cdda; /* A cute pink background */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    overflow: hidden; /* Hide scrollbars */
+}
+
+.container {
+    padding-top: 100px;
+}
+
+h1 {
+    color: #d14f8a;
+    font-size: 3em;
+}
+
+#birthdayButton {
+    background-color: #d14f8a;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#birthdayButton:hover {
+    background-color: #b94276;
+}
+
+#birthdayMessage {
+    margin-top: 30px;
+    font-size: 1.5em;
+    color: #555;
+}
+
+.hidden {
+    display: none;
+}
+
+#fireworksCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
