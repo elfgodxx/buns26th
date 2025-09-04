@@ -13,55 +13,79 @@ document.addEventListener('DOMContentLoaded', () => {
         lineWidth: { explosion: { min: 1, max: 3 }, trace: { min: 0.5, max: 1 } }
     });
 
+    // When the first button is clicked
     birthdayButton.addEventListener('click', () => {
         initialContainer.classList.add('hidden');
         fireworks.start();
         backgroundMusic.play().catch(e => console.error("Audio play failed:", e));
         setTimeout(() => { longMessageContainer.classList.remove('hidden'); }, 2000);
-        setTimeout(() => { fireworks.stop(); }, 20000);
+        
+        // When fireworks are done...
+        setTimeout(() => { 
+            fireworks.stop();
+            // ...start the falling star effect!
+            startFallingStars(); 
+        }, 20000); // 20 seconds
     });
 
+    // When the replay button is clicked
     replayButton.addEventListener('click', () => {
         longMessageContainer.classList.add('hidden');
         backgroundMusic.pause();
         backgroundMusic.currentTime = 0;
         setTimeout(() => { initialContainer.classList.remove('hidden'); }, 1500);
     });
+
+    // --- NEW FUNCTION FOR FALLING STARS ---
+    function startFallingStars() {
+        // First, check if we're on a mobile-sized screen. If not, do nothing.
+        if (window.innerWidth > 768) {
+            return; 
+        }
+
+        // Create a new star every 1.8 seconds
+        const starInterval = setInterval(() => {
+            const star = document.createElement('div');
+            star.classList.add('falling-star');
+            
+            // Randomize the horizontal starting position inside the container
+            star.style.left = Math.random() * 100 + '%';
+            
+            // Add the star to the message container
+            longMessageContainer.appendChild(star);
+
+            // Remove the star element from the page after its animation is done (11s)
+            setTimeout(() => {
+                star.remove();
+            }, 11000); // 10s animation + 1s delay
+
+        }, 1800);
+    }
 });
 
 
-// --- NEW, SELF-CONTAINED SPARKLE EFFECT ---
+// --- Your existing sparkle effect code can remain below ---
 
-// A helper function to create a sparkle at a specific position
 function createSparkle(x, y) {
     const sparkle = document.createElement('div');
     sparkle.classList.add('sparkle');
-    
     const offsetX = (Math.random() - 0.5) * 20;
     const offsetY = (Math.random() - 0.5) * 20;
     sparkle.style.left = (x + offsetX) + 'px';
     sparkle.style.top = (y + offsetY) + 'px';
-    
     document.body.appendChild(sparkle);
-
-    setTimeout(() => {
-        sparkle.remove();
-    }, 700);
+    setTimeout(() => { sparkle.remove(); }, 700);
 }
 
-// 1. Create a sparkle on every click (for mobile and PC)
 document.addEventListener('click', function(e) {
     createSparkle(e.clientX, e.clientY);
 });
 
-// 2. Create a sparkle trail on mouse move (for PC)
 let canCreateSparkle = true;
 document.addEventListener('mousemove', function(e) {
     if (canCreateSparkle) {
         createSparkle(e.clientX, e.clientY);
         canCreateSparkle = false;
-        setTimeout(() => {
-            canCreateSparkle = true;
-        }, 50);
+        setTimeout(() => { canCreateSparkle = true; }, 50);
     }
 });
