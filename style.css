@@ -28,6 +28,17 @@ body {
     text-align: center;
 }
 
+/* --- FIX for initial loading flash --- */
+/* This will be on the container at the start to keep it invisible */
+.is-loading {
+    opacity: 0;
+}
+
+/* Your existing .container class is below */
+.container {
+    /* ... all the existing styles are fine ... */
+}
+
 .container {
     background-color: rgba(248, 244, 242, 0.85);
     padding: 30px 40px;
