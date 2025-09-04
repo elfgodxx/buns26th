@@ -1,29 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Get all the elements we need
     const birthdayButton = document.getElementById('birthdayButton');
-    const birthdayMessage = document.getElementById('birthdayMessage');
+    const initialContainer = document.getElementById('initial-container');
+    const longMessageContainer = document.getElementById('long-message-container');
     const fireworksCanvas = document.getElementById('fireworksCanvas');
     const backgroundMusic = document.getElementById('backgroundMusic');
 
     const fireworks = new Fireworks.default(fireworksCanvas);
 
+    // Listen for a click on the button
     birthdayButton.addEventListener('click', () => {
-        // Hide the button
-        birthdayButton.style.display = 'none';
+        // 1. Fade out the initial container (title and button)
+        initialContainer.classList.add('hidden');
 
-        // Start the fireworks
+        // 2. Start the fireworks immediately
         fireworks.start();
 
-        // Show the birthday message after a delay
+        // 3. Play the background music
+        // Use a .catch() in case the browser has autoplay issues
+        backgroundMusic.play().catch(e => console.error("Audio play failed:", e));
+
+        // 4. Wait for a moment before showing the long message
         setTimeout(() => {
-            birthdayMessage.classList.remove('hidden');
-        }, 1000); // 1-second delay
+            // Fade in the long message container
+            longMessageContainer.classList.remove('hidden');
+        }, 2000); // 2-second delay (2000 milliseconds)
 
-        // Play the background music
-        backgroundMusic.play();
-
-        // Stop the fireworks after some time (e.g., 15 seconds)
+        // 5. Stop the fireworks after a longer period
         setTimeout(() => {
             fireworks.stop();
-        }, 15000); // 15 seconds
+        }, 25000); // Stop after 25 seconds
     });
 });
