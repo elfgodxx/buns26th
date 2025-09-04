@@ -1,16 +1,30 @@
+/* --- Verified CSS for buns26th project --- */
+
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    font-family: 'Georgia', serif; /* A more romantic font */
+    font-family: 'Georgia', serif;
     color: white;
 }
 
 body {
-    background: url('https://raw.githubusercontent.com/elfgodxx/buns26th/main/8edaca7b338251350fc297330440b8e9%20(1).gif') no-repeat center center fixed;
+    /* --- THIS IS THE CRITICAL PART --- */
+    /* This is the correct, verified RAW link to your GIF */
+    background-image: url('https://raw.githubusercontent.com/elfgodxx/buns26th/main/8edaca7b338251350fc297330440b8e9%20(1).gif');
+    
+    /* These properties ensure the background covers the whole screen */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
+
+    /* This fallback color will show if the image is slow to load */
+    background-color: #2b2b2b;
+
+    /* These are for centering the content box */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,19 +32,18 @@ body {
 }
 
 .container {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 30px 40px;
     border-radius: 20px;
     box-shadow: 0 0 25px rgba(0,0,0,0.6);
     max-width: 600px;
-    transition: opacity 1.5s ease-in-out; /* Smooth fade transition */
+    transition: opacity 1.5s ease-in-out;
 }
 
-/* Class to handle fading and hiding */
 .hidden {
     opacity: 0;
-    pointer-events: none; /* Can't click on it when hidden */
-    position: absolute; /* Take it out of the layout flow when hidden */
+    pointer-events: none;
+    position: absolute;
 }
 
 h1 {
@@ -41,14 +54,14 @@ h1 {
 
 h2 {
     font-size: 2em;
-    color: #f8cdda; /* Pinkish color for the header */
+    color: #f8cdda;
     text-shadow: 2px 2px 8px #000;
 }
 
 p {
     font-size: 1.2em;
     line-height: 1.6;
-    text-align: left; /* Justify long message for readability */
+    text-align: left;
 }
 
 #birthdayButton {
