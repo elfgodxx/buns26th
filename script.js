@@ -6,10 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const backgroundMusic = document.getElementById('backgroundMusic');
     const replayButton = document.getElementById('replayButton');
 
-    // --- FIX FOR THE INITIAL FLASH ---
-    // This removes the invisibility class, causing the box to fade in smoothly.
-    initialContainer.classList.remove('is-loading');
-
     const fireworks = new Fireworks.default(fireworksCanvas, {
         speed: 1, acceleration: 1.01, friction: 0.98, gravity: 1, opacity: 0.6,
         brightness: { min: 50, max: 70 }, flickering: 30, intensity: 10,
@@ -38,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function startFallingStars() {
         if (window.innerWidth > 768) { return; }
-        const starInterval = setInterval(() => {
+        setInterval(() => {
             const star = document.createElement('div');
             star.classList.add('falling-star');
             star.style.left = Math.random() * 100 + '%';
@@ -48,8 +44,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// ... The sparkle effect code below this line is fine and doesn't need to change ...
-function createSparkle(x, y) { /* ... */ }
-document.addEventListener('click', function(e) { /* ... */ });
+function createSparkle(x, y) {
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    const offsetX = (Math.random() - 0.5) * 20;
+    const offsetY = (Math.random() - 0.5) * 20;
+    sparkle.style.left = (x + offsetX) + 'px';
+    sparkle.style.top = (y + offsetY) + 'px';
+    document.body.appendChild(sparkle);
+    setTimeout(() => { sparkle.remove(); }, 700);
+}
+
+document.addEventListener('click', function(e) {
+    createSparkle(e.clientX, e.clientY);
+});
+
 let canCreateSparkle = true;
-document.addEventListener('mousemove', function(e) { /* ... */ });
+document.addEventListener('mousemove', function(e) {
+    if (canCreateSparkle) {
+        createSparkle(e.clientX, e.clientY);
+        canCreateSparkle = false;
+        setTimeout(() => { canCreateSparkle = true; }, 50);
+    }
+});
