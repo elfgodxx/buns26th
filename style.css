@@ -1,4 +1,4 @@
-/* --- Final Version with Mobile Scrolling Fix --- */
+/* --- Final Version with "One Last Thing" Exit --- */
 
 @keyframes slow-pan {
   0% { transform: scale(1.02); }
@@ -10,7 +10,6 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
-    /* We keep overflow hidden here to prevent weird page-level scrollbars */
     overflow: hidden; 
     font-family: 'Georgia', serif;
 }
@@ -39,12 +38,10 @@ body {
     box-sizing: border-box;
 }
 
-/* --- THIS IS THE SCROLLING FIX --- */
-/* This allows the long message box to be scrollable if its content is too tall for the screen */
 #long-message-container {
-    max-height: 85vh; /* The box can be a maximum of 85% of the screen height */
-    overflow-y: auto; /* Add a scrollbar automatically ONLY if needed */
-    text-align: left; /* Ensures all text inside is left-aligned */
+    max-height: 85vh;
+    overflow-y: auto;
+    text-align: left;
 }
 
 .hidden {
@@ -60,59 +57,40 @@ p { font-size: 1.2em; line-height: 1.6; text-align: left; color: #5d5d5d; }
 #birthdayButton:hover { background-color: #b94276; transform: scale(1.05); }
 #fireworksCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; }
 
-/* --- BETTER MOBILE LAYOUT --- */
+.exit-button {
+    background-color: transparent;
+    color: #b9728f;
+    padding: 10px 20px;
+    border: 1px solid #b9728f;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.exit-button:hover {
+    background-color: #b9728f;
+    color: white;
+}
+
+/* Style for the final "I love you." text */
+.final-text {
+    font-size: 4em;
+    padding: 20px;
+}
+
 @media (max-width: 768px) {
-    body {
-        /* On mobile, align the box to the TOP, not the center */
-        align-items: flex-start;
-        padding-top: 5vh; /* Give it some space from the top */
-        padding-bottom: 5vh; /* And bottom */
-    }
-
-    .container {
-        max-width: 90vw;
-        padding: 25px 20px;
-    }
-
+    body { align-items: flex-start; padding-top: 5vh; padding-bottom: 5vh; }
+    .container { max-width: 90vw; padding: 25px 20px; }
     h1 { font-size: 2.2em; }
     h2 { font-size: 1.6em; }
     p { font-size: 1.0em; line-height: 1.7; }
     #birthdayButton { font-size: 1em; padding: 12px 24px; }
+    /* Make final text smaller on mobile */
+    .final-text { font-size: 2.5em; }
 }
-
-.exit-button {
-    /* (Use the same .exit-button style from Option 1) */
-}
-
-.final-text {
-    font-size: 4em;
-    color: #4a4a4a;
-}
-
-/* On mobile, make the final text smaller */
-@media (max-width: 768px) {
-    .final-text {
-        font-size: 2.5em;
-    }
-}
-
-// In script.js, inside the DOMContentLoaded event listener
-
-document.addEventListener('DOMContentLoaded', () => {
-    // ... all your existing code at the top ...
-    const exitButton = document.getElementById('exitButton');
-    const finalMessageContainer = document.getElementById('final-message-container');
-
-    // ... your existing birthdayButton.addEventListener ...
-
-    // ADD THIS NEW EVENT LISTENER
-    exitButton.addEventListener('click', () => {
-        longMessageContainer.classList.add('hidden');
-
-        // Optional: Fade out music (more complex) - for now, we'll just let it play.
-
-        setTimeout(() => {
-            finalMessageContainer.classList.remove('hidden');
-        }, 1000);
-    });
-});
