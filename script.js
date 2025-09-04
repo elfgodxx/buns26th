@@ -1,63 +1,49 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Get all the elements we need
     const birthdayButton = document.getElementById('birthdayButton');
     const initialContainer = document.getElementById('initial-container');
     const longMessageContainer = document.getElementById('long-message-container');
     const fireworksCanvas = document.getElementById('fireworksCanvas');
     const backgroundMusic = document.getElementById('backgroundMusic');
 
-    // --- FIREWORKS CUSTOMIZATION ---
+    // --- FINAL, THEMED FIREWORKS CUSTOMIZATION ---
     const fireworks = new Fireworks.default(fireworksCanvas, {
-        // Opacity: Lower value means more transparent. 0.7 is a good start.
-        opacity: 0.7,
+        // --- Speed Adjustments ---
+        speed: 1,                 // Lower overall speed
+        acceleration: 1.01,       // Very slow acceleration
+        friction: 0.98,           // More friction to slow them down
+        gravity: 1,               // Lower gravity so they hang in the air a bit
         
-        // Brightness: Controls the brightness range of the firework particles.
-        brightness: {
-          min: 50,
-          max: 80
-        },
-
-        // Colors: An array of hex codes that match your background.
+        // --- Color & Style Adjustments ---
+        opacity: 0.6,             // Soft transparency
+        brightness: { min: 50, max: 70 },
+        flickering: 30,
+        intensity: 10,            // Fewer fireworks for a calmer feel
+        
+        // New color palette to match the sunset background
         colors: [
-            '#D8BFD8', // Thistle (light purple)
-            '#FFC0CB', // Pink
-            '#E6E6FA'  // Lavender
+            '#D8A7B1', // Dusty Rose
+            '#B58DB6', // Soft Lilac
+            '#F2D7D9'  // Pale Pink
         ],
-        
-        // Other settings to make them feel softer
-        intensity: 20,
-        flickering: 20,
+
         lineWidth: {
-            explosion: {
-              min: 1,
-              max: 3
-            },
-            trace: {
-              min: 0.5,
-              max: 1.5
-            }
+            explosion: { min: 1, max: 3 },
+            trace: { min: 0.5, max: 1 }
         }
     });
 
-    // Listen for a click on the button
+    // --- Event Listener ---
     birthdayButton.addEventListener('click', () => {
-        // 1. Fade out the initial container (title and button)
         initialContainer.classList.add('hidden');
-
-        // 2. Start the fireworks
         fireworks.start();
-
-        // 3. Play the background music
         backgroundMusic.play().catch(e => console.error("Audio play failed:", e));
 
-        // 4. Wait for a moment before showing the long message
         setTimeout(() => {
             longMessageContainer.classList.remove('hidden');
         }, 2000);
 
-        // 5. Let the fireworks run for a while, then gently stop
         setTimeout(() => {
             fireworks.stop();
-        }, 20000); // Stop after 20 seconds
+        }, 20000);
     });
 });
