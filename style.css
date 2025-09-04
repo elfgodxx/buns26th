@@ -1,4 +1,4 @@
-/* --- Final Version with Loading Flash Fix --- */
+/* --- Final Version with DEFINITIVE Loading Flash Fix --- */
 
 /* This animation fades the entire page in */
 @keyframes fadeInPage {
@@ -21,15 +21,13 @@ body, html {
 }
 
 body {
-    /* Apply the fade-in animation */
-    animation: fadeInPage 1.5s ease-in-out forwards;
-
     background-image: url('https://raw.githubusercontent.com/elfgodxx/buns26th/main/8edaca7b338251350fc297330440b8e9%20(1).gif');
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     background-color: #2b2b2b;
+    /* This combines both animations and applies the fade-in fix */
     animation: slow-pan 40s infinite alternate ease-in-out, fadeInPage 1.5s ease-in-out forwards;
     display: flex;
     justify-content: center;
