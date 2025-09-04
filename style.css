@@ -1,4 +1,4 @@
-/* --- Final Version with "One Last Thing" Exit --- */
+/* --- Final Version with Replay Button --- */
 
 @keyframes slow-pan {
   0% { transform: scale(1.02); }
@@ -78,12 +78,6 @@ p { font-size: 1.2em; line-height: 1.6; text-align: left; color: #5d5d5d; }
     color: white;
 }
 
-/* Style for the final "I love you." text */
-.final-text {
-    font-size: 4em;
-    padding: 20px;
-}
-
 @media (max-width: 768px) {
     body { align-items: flex-start; padding-top: 5vh; padding-bottom: 5vh; }
     .container { max-width: 90vw; padding: 25px 20px; }
@@ -91,6 +85,4 @@ p { font-size: 1.2em; line-height: 1.6; text-align: left; color: #5d5d5d; }
     h2 { font-size: 1.6em; }
     p { font-size: 1.0em; line-height: 1.7; }
     #birthdayButton { font-size: 1em; padding: 12px 24px; }
-    /* Make final text smaller on mobile */
-    .final-text { font-size: 2.5em; }
 }
